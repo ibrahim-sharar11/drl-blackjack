@@ -1,0 +1,35 @@
+id: explorer
+description: Maximize coverage; seek new states
+weights:
+  # Generic/game keys
+  progress: 0.0
+  coin: 0.0
+  death: -0.0
+  step_cost: -0.0001
+  explore_bonus: 0.2
+  speed_bonus: 0.0
+  success: 0.8
+  validation_error: -0.0
+  # FormFlow-specific keys
+  validation_error_bonus: 0.05      # reward finding validation issues
+  latency_penalty: -0.01            # mild penalty
+  page_progress: 0.0                # neutral on progress
+  page_coverage_bonus: 0.05         # strong page coverage incentive
+  dom_coverage_bonus: 0.02          # selector coverage
+  softlock_penalty: -0.03           # discourage loops
+  # Tetris-specific keys
+  line_clear_bonus: 0.8
+  hole_penalty: -0.01
+  height_penalty: -0.005
+  topout_penalty: -1.0
+  # Blackjack-specific keys
+  # Keep exploratory but temper reckless busts
+  bust_penalty: -1.0
+  win_reward: 3.0
+  lose_penalty: -1.0
+  draw_bonus: -0.2
+  blackjack_bonus: 1.2
+  # Shaping to explore but not stand too early
+  approach_21_bonus: 0.15
+  early_stand_penalty: -0.3
+  safe_hit_bonus: 0.2

@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DRL for Automated Testing — Complete Report</title>
+  <style>
+    :root {
+      --fg: #222;
+      --muted: #666;
+      --brand: #2563eb;
+      --card: #fff;
+      --border: #e5e7eb;
+      --accent: #0ea5e9;
+    }
+    body { font-family: Segoe UI, Arial, sans-serif; margin: 24px; color: var(--fg); }
+    h1, h2, h3 { margin: 0.4em 0; }
+    p { line-height: 1.5; }
+    code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    pre { background: #0f172a; color: #e2e8f0; padding: 12px; border-radius: 8px; overflow: auto; }
+    .muted { color: var(--muted); }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 12px; }
+    .pill { display: inline-block; padding: 2px 8px; border-radius: 999px; background: #eef2ff; color: #3730a3; font-size: 12px; margin-right: 6px; }
+    img { max-width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border); }
+    .row { display: flex; gap: 12px; flex-wrap: wrap; }
+    .toc a { display: inline-block; margin-right: 12px; color: var(--brand); text-decoration: none; }
+    .toc a:hover { text-decoration: underline; }
+    .kvs { display: grid; grid-template-columns: 160px 1fr; gap: 8px 12px; font-size: 14px; }
+    .kvk { color: var(--muted); }
+    hr { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+  </style>
+  <meta name="description" content="Comprehensive report for DRL-based automated testing across Blackjack and FormFlow with PPO/A2C, personas, metrics, plots, and GIFs." />
+  <meta name="keywords" content="reinforcement learning, PPO, A2C, Gymnasium, automated testing, SB3, personas" />
+  <meta name="author" content="Assignment" />
+</head>
+<body>
+  <h1>DRL for Automated Testing — Complete Report</h1>
+  <p class="muted">A glossary-style summary with architecture, training steps, curated footage, plots, and results.</p>
+
+  <div class="toc">
+    <a href="#overview">Overview</a>
+    <a href="#gameplay">Gameplay</a>
+    <a href="#architecture">Architecture</a>
+    <a href="#environments">Environments</a>
+    <a href="#personas">Personas</a>
+    <a href="#training">Training</a>
+    <a href="#results">Results</a>
+    <a href="#footage">Footage</a>
+    <a href="#glossary">Glossary</a>
+    <a href="#repro">Reproduce</a>
+  </div>
+
+  <hr/>
+  <h2 id="overview">Overview</h2>
+  <p>
+    This project automates app/game testing with deep RL agents (not scripted bots).
+    We train PPO and A2C agents using Stable-Baselines3 on two apps: Blackjack (game) and FormFlow (a multi-page web flow simulation).
+    We shape rewards via personas (Survivor/Explorer) and export per-episode CSVs, aggregate JSONs, plots, and GIFs.
+  </p>
+  <div class="kvs">
+    <div class="kvk">Algorithms</div><div>PPO, A2C (SB3)</div>
+    <div class="kvk">Apps</div><div>Blackjack, FormFlow</div>
+    <div class="kvk">Personas</div><div><span class="pill">Survivor</span><span class="pill">Explorer</span><span class="pill">Speedrunner (optional)</span></div>
+    <div class="kvk">Artifacts</div><div>episodes.csv, aggregate.json, plots (PNG), GIF footage</div>
+  </div>
+
+  <hr/>
+  <h2 id="gameplay">Gameplay Showcase</h2>
+  <p>Quick look at the agent playing each app. Click a GIF to open it at full size.</p>
+  <div class="grid">
+    <div class="card">
+      <h3>Blackjack — PPO Survivor</h3>
+      <div class="row">
+        <div>
+          <p class="muted">Viewer Gameplay</p>
+          <a href="runs/blackjack-ppo-survivor-seed7-1761181439/eval/viewer_episode_1.gif">
+            <img src="runs/blackjack-ppo-survivor-seed7-1761181439/eval/viewer_episode_1.gif" alt="Blackjack Survivor Viewer Gameplay" onerror="this.onerror=null;this.src='runs/blackjack-ppo-survivor-seed7-1761181439/eval/episode_1.gif';" />
+          </a>
+        </div>
+        <div>
+          <p class="muted">Eval Render</p>
+          <a href="runs/blackjack-ppo-survivor-seed7-1761181439/eval/episode_1.gif">
+            <img src="runs/blackjack-ppo-survivor-seed7-1761181439/eval/episode_1.gif" alt="Blackjack Survivor Eval Episode 1" />
+          </a>
+        </div>
+      </div>
+      <p class="muted">Agent takes sensible HITS on low totals; dealer hole card flips after STAND.</p>
+    </div>
+    <div class="card">
+      <h3>Blackjack — PPO Explorer</h3>
+      <div class="row">
+        <div>
+          <p class="muted">Viewer Gameplay</p>
+          <a href="runs/blackjack-ppo-explorer-seed7-1761181597/eval/viewer_episode_1.gif">
+            <img src="runs/blackjack-ppo-explorer-seed7-1761181597/eval/viewer_episode_1.gif" alt="Blackjack Explorer Viewer Gameplay" onerror="this.onerror=null;this.src='runs/blackjack-ppo-explorer-seed7-1761181597/eval/episode_1.gif';" />
+          </a>
+        </div>
+        <div>
+          <p class="muted">Eval Render</p>
+          <a href="runs/blackjack-ppo-explorer-seed7-1761181597/eval/episode_1.gif">
+            <img src="runs/blackjack-ppo-explorer-seed7-1761181597/eval/episode_1.gif" alt="Blackjack Explorer Eval Episode 1" />
+          </a>
+        </div>
+      </div>
+      <p class="muted">Coverage‑oriented persona with similar competent play; multi‑step hands.</p>
+    </div>
+    <div class="card">
+      <h3>FormFlow — PPO Survivor</h3>
+      <a href="runs/formflow-ppo-survivor-seed7-1761169999/eval/episode_1.gif">
+        <img src="runs/formflow-ppo-survivor-seed7-1761169999/eval/episode_1.gif" alt="FormFlow Survivor Episode 1" />
+      </a>
+      <p class="muted">Steady completion; handles validation and latency gracefully.</p>
+    </div>
+    <div class="card">
+      <h3>FormFlow — PPO Explorer</h3>
+      <a href="runs/formflow-ppo-explorer-seed7-1761171477/eval/episode_1.gif">
+        <img src="runs/formflow-ppo-explorer-seed7-1761171477/eval/episode_1.gif" alt="FormFlow Explorer Episode 1" />
+      </a>
+      <p class="muted">Explores pages/selectors and surfaces validation errors.</p>
+    </div>
+  </div>
+
+  <hr/>
+  <h2 id="architecture">Architecture</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Code Layout</h3>
+      <ul>
+        <li><code>envs/</code> — domain envs with reward hooks and metrics</li>
+        <li><code>src/train.py</code> — SB3 training (config-driven)</li>
+        <li><code>src/eval.py</code> — deterministic eval + GIFs</li>
+        <li><code>configs/</code> — YAML for apps, algos, personas</li>
+        <li><code>notebooks/plots.py</code> — learning curve + metric histograms</li>
+        <li><code>src/build_report.py</code> — plot discovery + HTML builder</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Reproducibility</h3>
+      <ul>
+        <li>Fixed seeds across Torch/NumPy/Envs</li>
+        <li>Pinned dependencies in <code>requirements.txt</code></li>
+        <li>Per-run snapshot: <code>config.json</code>, <code>model.zip</code></li>
+      </ul>
+    </div>
+  </div>
+
+  <hr/>
+  <h2 id="environments">Environments</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Blackjack</h3>
+      <ul>
+        <li>Actions: hit (0), stand (1), double (2 when enabled)</li>
+        <li>Obs: player_sum_norm, dealer_upcard_norm, usable_ace, steps_left_norm, bankroll_norm, bet_norm, rounds_left_norm, doubled_flag</li>
+        <li>Shaping: step_cost, win/lose/draw, bust penalty, blackjack bonus</li>
+        <li>Added: approach_21_bonus, early_stand_penalty, safe_hit_bonus</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>FormFlow</h3>
+      <ul>
+        <li>Actions: navigate, type/clear, toggle checkbox, click selector, submit</li>
+        <li>Obs: page one‑hot + state scalars (errors/latency/steps)</li>
+        <li>Shaping: success, progress/coverage, latency penalty, softlock penalty</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr/>
+  <h2 id="personas">Personas</h2>
+  <p>
+    Personas supply reward weights that alter behavior: Survivor prefers safe completion; Explorer favors coverage and discovery.
+  </p>
+  <div class="grid">
+    <div class="card">
+      <h3>Survivor</h3>
+      <ul>
+        <li>Blackjack: higher win reward, softened bust penalty, avoid early stands, safe hit bonus</li>
+        <li>FormFlow: avoids latency spikes and softlocks; steady page progress</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Explorer</h3>
+      <ul>
+        <li>Blackjack: exploratory with safe hits; discourages premature stands</li>
+        <li>FormFlow: strong page/DOM coverage and issue discovery</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr/>
+  <h2 id="training">Training</h2>
+  <p>Representative commands used to train and evaluate:</p>
+  <pre><code># Blackjack PPO Survivor (200k)
+python -m src.train --app blackjack --algo ppo --persona survivor --seed 7 --timesteps 200000
+python -m src.eval  --app blackjack --algo ppo --persona survivor --seed 7 --episodes 200 --record_gif
+
+# Blackjack PPO Explorer (200k)
+python -m src.train --app blackjack --algo ppo --persona explorer --seed 7 --timesteps 200000
+python -m src.eval  --app blackjack --algo ppo --persona explorer --seed 7 --episodes 200 --record_gif
+
+# FormFlow PPO Survivor (200k)
+python -m src.train --app formflow --algo ppo --persona survivor --seed 7 --timesteps 200000
+python -m src.eval  --app formflow --algo ppo --persona survivor --seed 7 --episodes 200 --record_gif
+</code></pre>
+
+  <hr/>
+  <h2 id="results">Results</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Blackjack — PPO Survivor</h3>
+      <div class="row">
+        <img src="runs/blackjack-ppo-survivor-seed7-1761181439/return_curve.png" alt="Return curve" />
+        <img src="runs/blackjack-ppo-survivor-seed7-1761181439/win_hist.png" alt="Win hist" />
+      </div>
+      <p class="muted">action_hit_mean ≈ 0.188 • action_stand_mean ≈ 0.404 • length_mean ≈ 10.45</p>
+    </div>
+    <div class="card">
+      <h3>Blackjack — PPO Explorer</h3>
+      <div class="row">
+        <img src="runs/blackjack-ppo-explorer-seed7-1761181597/return_curve.png" alt="Return curve" />
+        <img src="runs/blackjack-ppo-explorer-seed7-1761181597/win_hist.png" alt="Win hist" />
+      </div>
+      <p class="muted">action_hit_mean ≈ 0.174 • action_stand_mean ≈ 0.437 • length_mean ≈ 10.77</p>
+    </div>
+    <div class="card">
+      <h3>FormFlow — PPO Survivor</h3>
+      <div class="row">
+        <img src="runs/formflow-ppo-survivor-seed7-1761169999/return_curve.png" alt="Return curve" />
+        <img src="runs/formflow-ppo-survivor-seed7-1761169999/distinct_pages_hist.png" alt="Pages hist" />
+      </div>
+      <p class="muted">Quick completions; avoids spikes/softlock; consistent success</p>
+    </div>
+    <div class="card">
+      <h3>FormFlow — PPO Explorer</h3>
+      <div class="row">
+        <img src="runs/formflow-ppo-explorer-seed7-1761171477/return_curve.png" alt="Return curve" />
+        <img src="runs/formflow-ppo-explorer-seed7-1761171477/distinct_selectors_hist.png" alt="Selectors hist" />
+      </div>
+      <p class="muted">Higher coverage; meaningful error discovery</p>
+    </div>
+  </div>
+
+  <hr/>
+  <h2 id="footage">Footage (GIF + Legend)</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Blackjack — PPO Survivor</h3>
+      <div class="row">
+        <img src="runs/blackjack-ppo-survivor-seed7-1761181439/eval/legend.png" alt="Legend" />
+        <img src="runs/blackjack-ppo-survivor-seed7-1761181439/eval/episode_1.gif" alt="Episode 1" />
+      </div>
+    </div>
+    <div class="card">
+      <h3>Blackjack — PPO Explorer</h3>
+      <div class="row">
+        <img src="runs/blackjack-ppo-explorer-seed7-1761181597/eval/legend.png" alt="Legend" />
+        <img src="runs/blackjack-ppo-explorer-seed7-1761181597/eval/episode_1.gif" alt="Episode 1" />
+      </div>
+    </div>
+    <div class="card">
+      <h3>FormFlow — PPO Survivor</h3>
+      <div class="row">
+        <img src="runs/formflow-ppo-survivor-seed7-1761169999/eval/legend.png" alt="Legend" />
+        <img src="runs/formflow-ppo-survivor-seed7-1761169999/eval/episode_1.gif" alt="Episode 1" />
+      </div>
+    </div>
+    <div class="card">
+      <h3>FormFlow — PPO Explorer</h3>
+      <div class="row">
+        <img src="runs/formflow-ppo-explorer-seed7-1761171477/eval/legend.png" alt="Legend" />
+        <img src="runs/formflow-ppo-explorer-seed7-1761171477/eval/episode_1.gif" alt="Episode 1" />
+      </div>
+    </div>
+  </div>
+
+  <hr/>
+  <h2 id="glossary">Glossary</h2>
+  <ul>
+    <li><b>Episode</b> — one complete attempt (a hand in Blackjack; a full flow in FormFlow).</li>
+    <li><b>Return</b> — sum of rewards in an episode (includes shapings).</li>
+    <li><b>Deterministic eval</b> — greedy policy; no sampling; reproducible metrics.</li>
+    <li><b>Persona</b> — reward weight profile that biases agent behavior.</li>
+    <li><b>Shaping</b> — additional reward terms guiding exploration and safety.</li>
+    <li><b>Coverage</b> — breadth of states/pages/selectors reached (FormFlow).</li>
+  </ul>
+
+  <hr/>
+  <h2 id="repro">How to Reproduce</h2>
+  <pre><code># Setup
+python -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+
+# Train + Eval (examples)
+python -m src.train --app blackjack --algo ppo --persona survivor --seed 7 --timesteps 200000
+python -m src.eval  --app blackjack --algo ppo --persona survivor --seed 7 --episodes 200 --record_gif
+
+# Build consolidated report
+python -m src.build_report --append_report_md
+</code></pre>
+
+  <p class="muted">This document is a curated complement to <code>AMAZING_REPORT.html</code>, focusing on narrative, glossary, and hand-picked artifacts.</p>
+</body>
+</html>

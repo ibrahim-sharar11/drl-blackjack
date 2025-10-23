@@ -1,0 +1,5 @@
+id: tetris
+seed: 7
+max_steps: 2000
+reward_scale: 1.0
+target_lines: 10

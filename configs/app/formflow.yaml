@@ -1,0 +1,6 @@
+id: formflow
+seed: 7
+max_steps: 150
+reward_scale: 1.0
+invalid_prob: 0.2
+latency_spike_prob: 0.05

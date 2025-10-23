@@ -1,0 +1,26 @@
+id: blackjack
+description: Blackjack with optional betting and multi-round episodes
+max_steps: 50          # keep episodes short for faster learning
+seed: 7
+reward_scale: 1.0
+
+# Advanced options
+num_decks: 4           # shoe size
+penetration: 0.75      # shuffle when this fraction of shoe is used
+rounds_per_episode: 1  # single hand per episode to simplify objective
+
+# Betting settings (set bet_bins to 0 to disable betting phase)
+bankroll_start: 100
+bankroll_target: 150
+bet_bins: 0            # disable betting phase for competence-first training
+min_bet: 1
+max_bet: 10
+payout_blackjack: 1.5  # 3:2 payout
+dealer_hits_soft17: false
+allow_double: false    # reduce action complexity initially
+bet_scaled_reward: false
+
+# Reward shaping can be tuned via persona weights; defaults exist in env
+# You may set in persona weights:
+#   step_cost, bust_penalty, win_reward, lose_penalty, draw_bonus,
+#   blackjack_bonus, success, speed_bonus

@@ -1,0 +1,35 @@
+id: survivor
+description: Avoid failures; finish reliably; modest exploration
+weights:
+  # Generic/game keys
+  progress: 0.0
+  coin: 0.0
+  death: -0.0
+  step_cost: -0.0001
+  explore_bonus: 0.05
+  speed_bonus: 0.02
+  success: 1.0
+  validation_error: -0.0
+  # FormFlow-specific keys
+  validation_error_bonus: 0.0       # do not incentivize errors
+  latency_penalty: -0.02            # avoid latency spikes
+  page_progress: 0.01               # steady page progress
+  page_coverage_bonus: 0.02         # some coverage incentive
+  dom_coverage_bonus: 0.01          # some selector coverage
+  softlock_penalty: -0.05           # avoid loops/softlocks
+  # Tetris-specific keys
+  line_clear_bonus: 0.6
+  hole_penalty: -0.02
+  height_penalty: -0.01
+  topout_penalty: -1.0
+  # Blackjack-specific keys
+  # Tune for conservative, win-focused play
+  bust_penalty: -1.0
+  win_reward: 4.0
+  lose_penalty: -1.2
+  draw_bonus: -0.3
+  blackjack_bonus: 1.5
+  # Shaping to promote sensible play
+  approach_21_bonus: 0.2
+  early_stand_penalty: -0.4
+  safe_hit_bonus: 0.3
