@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>DRL for Automated Testing - Complete Report</title>
+  <title>DRL for Automated Testing — Complete Report</title>
   <style>
     :root {
       --fg: #222;
@@ -35,16 +35,18 @@
   <meta name="author" content="Assignment" />
 </head>
 <body>
-  <h1>DRL for Automated Testing - Complete Report</h1>
+  <h1>DRL for Automated Testing — Complete Report</h1>
   <p class="muted">A glossary-style summary with architecture, training steps, curated footage, plots, and results.</p>
 
   <div class="toc">
-    <a href="#overview">Overview</a>    <a href="#gameplay">Gameplay</a>
+    <a href="#overview">Overview</a>
+    <a href="#gameplay">Gameplay</a>
     <a href="#architecture">Architecture</a>
     <a href="#environments">Environments</a>
     <a href="#personas">Personas</a>
     <a href="#training">Training</a>
-    <a href="#results">Results</a>    <a href="#footage">Footage</a>
+    <a href="#results">Results</a>
+    <a href="#footage">Footage</a>
     <a href="#glossary">Glossary</a>
     <a href="#repro">Reproduce</a>
   </div>
@@ -64,14 +66,11 @@
   </div>
 
   <hr/>
-  <hr/>
-  
-  <hr/>
   <h2 id="gameplay">Gameplay Showcase</h2>
   <p>Quick look at the agent playing each app. Click a GIF to open it at full size.</p>
   <div class="grid">
     <div class="card">
-      <h3>Blackjack - PPO Survivor</h3>
+      <h3>Blackjack — PPO Survivor</h3>
       <div class="row">
         <div>
           <p class="muted">Viewer Gameplay</p>
@@ -89,7 +88,7 @@
       <p class="muted">Agent takes sensible HITS on low totals; dealer hole card flips after STAND.</p>
     </div>
     <div class="card">
-      <h3>Blackjack - PPO Explorer</h3>
+      <h3>Blackjack — PPO Explorer</h3>
       <div class="row">
         <div>
           <p class="muted">Viewer Gameplay</p>
@@ -104,36 +103,38 @@
           </a>
         </div>
       </div>
-      <p class="muted">Coverage-oriented persona with similar competent play; multi-step hands.</p>
+      <p class="muted">Coverage‑oriented persona with similar competent play; multi‑step hands.</p>
     </div>
     <div class="card">
-      <h3>FormFlow - PPO Survivor</h3>
+      <h3>FormFlow — PPO Survivor</h3>
       <a href="runs/formflow-ppo-survivor-seed7-1761169999/eval/episode_1.gif">
         <img src="runs/formflow-ppo-survivor-seed7-1761169999/eval/episode_1.gif" alt="FormFlow Survivor Episode 1" />
       </a>
       <p class="muted">Steady completion; handles validation and latency gracefully.</p>
     </div>
     <div class="card">
-      <h3>FormFlow - PPO Explorer</h3>
+      <h3>FormFlow — PPO Explorer</h3>
       <a href="runs/formflow-ppo-explorer-seed7-1761171477/eval/episode_1.gif">
         <img src="runs/formflow-ppo-explorer-seed7-1761171477/eval/episode_1.gif" alt="FormFlow Explorer Episode 1" />
       </a>
       <p class="muted">Explores pages/selectors and surfaces validation errors.</p>
     </div>
   </div>
-<h2 id="architecture">Architecture</h2>
+
+  <hr/>
+  <h2 id="architecture">Architecture</h2>
   <div class="grid">
     <div class="card">
       <h3>Code Layout</h3>
       <ul>
-        <ul>
-        <li><code>envs/</code> - domain envs with reward hooks and metrics</li>
-        <li><code>src/train.py</code> - SB3 training (config-driven)</li>
-        <li><code>src/eval.py</code> - deterministic eval + GIFs</li>
-        <li><code>configs/</code> - YAML for apps, algos, personas</li>
-        <li><code>notebooks/plots.py</code> - learning curve + metric histograms</li>
-        <li><code>src/build_report.py</code> - plot discovery + HTML builder</li>
+        <li><code>envs/</code> — domain envs with reward hooks and metrics</li>
+        <li><code>src/train.py</code> — SB3 training (config-driven)</li>
+        <li><code>src/eval.py</code> — deterministic eval + GIFs</li>
+        <li><code>configs/</code> — YAML for apps, algos, personas</li>
+        <li><code>notebooks/plots.py</code> — learning curve + metric histograms</li>
+        <li><code>src/build_report.py</code> — plot discovery + HTML builder</li>
       </ul>
+    </div>
     <div class="card">
       <h3>Reproducibility</h3>
       <ul>
@@ -160,8 +161,8 @@
       <h3>FormFlow</h3>
       <ul>
         <li>Actions: navigate, type/clear, toggle checkbox, click selector, submit</li>
-        <li>Obs: page one-hot + state scalars (errors/latency/steps)</li>
-        <li>Obs: page one-hot + state scalars (errors/latency/steps)</li>
+        <li>Obs: page one‑hot + state scalars (errors/latency/steps)</li>
+        <li>Shaping: success, progress/coverage, latency penalty, softlock penalty</li>
       </ul>
     </div>
   </div>
@@ -206,26 +207,25 @@ python -m src.eval  --app formflow --algo ppo --persona survivor --seed 7 --epis
 
   <hr/>
   <h2 id="results">Results</h2>
-  <h2 id="results">Results</h2>
   <div class="grid">
     <div class="card">
-      <h3>Blackjack - PPO Survivor</h3>
+      <h3>Blackjack — PPO Survivor</h3>
       <div class="row">
         <img src="runs/blackjack-ppo-survivor-seed7-1761181439/return_curve.png" alt="Return curve" />
         <img src="runs/blackjack-ppo-survivor-seed7-1761181439/win_hist.png" alt="Win hist" />
       </div>
-      <p class="muted">action_hit_mean: 0.188 | action_stand_mean: 0.404 | length_mean: 10.45</p>
+      <p class="muted">action_hit_mean ≈ 0.188 • action_stand_mean ≈ 0.404 • length_mean ≈ 10.45</p>
     </div>
     <div class="card">
-      <h3>Blackjack - PPO Explorer</h3>
+      <h3>Blackjack — PPO Explorer</h3>
       <div class="row">
         <img src="runs/blackjack-ppo-explorer-seed7-1761181597/return_curve.png" alt="Return curve" />
         <img src="runs/blackjack-ppo-explorer-seed7-1761181597/win_hist.png" alt="Win hist" />
       </div>
-      <p class="muted">action_hit_mean: 0.174 | action_stand_mean: 0.437 | length_mean: 10.77</p>
+      <p class="muted">action_hit_mean ≈ 0.174 • action_stand_mean ≈ 0.437 • length_mean ≈ 10.77</p>
     </div>
     <div class="card">
-      <h3>FormFlow - PPO Survivor</h3>
+      <h3>FormFlow — PPO Survivor</h3>
       <div class="row">
         <img src="runs/formflow-ppo-survivor-seed7-1761169999/return_curve.png" alt="Return curve" />
         <img src="runs/formflow-ppo-survivor-seed7-1761169999/distinct_pages_hist.png" alt="Pages hist" />
@@ -233,7 +233,7 @@ python -m src.eval  --app formflow --algo ppo --persona survivor --seed 7 --epis
       <p class="muted">Quick completions; avoids spikes/softlock; consistent success</p>
     </div>
     <div class="card">
-      <h3>FormFlow - PPO Explorer</h3>
+      <h3>FormFlow — PPO Explorer</h3>
       <div class="row">
         <img src="runs/formflow-ppo-explorer-seed7-1761171477/return_curve.png" alt="Return curve" />
         <img src="runs/formflow-ppo-explorer-seed7-1761171477/distinct_selectors_hist.png" alt="Selectors hist" />
@@ -241,50 +241,50 @@ python -m src.eval  --app formflow --algo ppo --persona survivor --seed 7 --epis
       <p class="muted">Higher coverage; meaningful error discovery</p>
     </div>
   </div>
-  <hr/>
-  <hr/>
-  
+
   <hr/>
   <h2 id="footage">Footage (GIF + Legend)</h2>
   <div class="grid">
     <div class="card">
-      <h3>Blackjack - PPO Survivor</h3>
+      <h3>Blackjack — PPO Survivor</h3>
       <div class="row">
         <img src="runs/blackjack-ppo-survivor-seed7-1761181439/eval/legend.png" alt="Legend" />
         <img src="runs/blackjack-ppo-survivor-seed7-1761181439/eval/episode_1.gif" alt="Episode 1" />
       </div>
     </div>
     <div class="card">
-      <h3>Blackjack - PPO Explorer</h3>
+      <h3>Blackjack — PPO Explorer</h3>
       <div class="row">
         <img src="runs/blackjack-ppo-explorer-seed7-1761181597/eval/legend.png" alt="Legend" />
         <img src="runs/blackjack-ppo-explorer-seed7-1761181597/eval/episode_1.gif" alt="Episode 1" />
       </div>
     </div>
     <div class="card">
-      <h3>FormFlow - PPO Survivor</h3>
+      <h3>FormFlow — PPO Survivor</h3>
       <div class="row">
         <img src="runs/formflow-ppo-survivor-seed7-1761169999/eval/legend.png" alt="Legend" />
         <img src="runs/formflow-ppo-survivor-seed7-1761169999/eval/episode_1.gif" alt="Episode 1" />
       </div>
     </div>
     <div class="card">
-      <h3>FormFlow - PPO Explorer</h3>
+      <h3>FormFlow — PPO Explorer</h3>
       <div class="row">
         <img src="runs/formflow-ppo-explorer-seed7-1761171477/eval/legend.png" alt="Legend" />
         <img src="runs/formflow-ppo-explorer-seed7-1761171477/eval/episode_1.gif" alt="Episode 1" />
       </div>
     </div>
   </div>
-<h2 id="glossary">Glossary</h2>
+
+  <hr/>
+  <h2 id="glossary">Glossary</h2>
   <ul>
-    <li><b>Episode</b> - one complete attempt (a hand in Blackjack; a full flow in FormFlow).</li>
-    <li><b>Episode</b> - one complete attempt (a hand in Blackjack; a full flow in FormFlow).</li>
-    <li><b>Return</b> - sum of rewards in an episode (includes shapings).</li>
-    <li><b>Deterministic eval</b> - greedy policy; no sampling; reproducible metrics.</li>
-    <li><b>Persona</b> - reward weight profile that biases agent behavior.</li>
-    <li><b>Shaping</b> - additional reward terms guiding exploration and safety.</li>
-    <li><b>Coverage</b> - breadth of states/pages/selectors reached (FormFlow).</li>
+    <li><b>Episode</b> — one complete attempt (a hand in Blackjack; a full flow in FormFlow).</li>
+    <li><b>Return</b> — sum of rewards in an episode (includes shapings).</li>
+    <li><b>Deterministic eval</b> — greedy policy; no sampling; reproducible metrics.</li>
+    <li><b>Persona</b> — reward weight profile that biases agent behavior.</li>
+    <li><b>Shaping</b> — additional reward terms guiding exploration and safety.</li>
+    <li><b>Coverage</b> — breadth of states/pages/selectors reached (FormFlow).</li>
+  </ul>
 
   <hr/>
   <h2 id="repro">How to Reproduce</h2>
@@ -304,5 +304,3 @@ python -m src.build_report --append_report_md
   <p class="muted">This document is a curated complement to <code>AMAZING_REPORT.html</code>, focusing on narrative, glossary, and hand-picked artifacts.</p>
 </body>
 </html>
-
-
