@@ -6,7 +6,7 @@ from collections import defaultdict
 
 class FormFlowEnv(gym.Env):
     """
-    Simulated multi-page web form flow (no browser needed).
+    Simulated multi-page web form flow 
     Goals:
       - Reach final submit (success)
       - Discover validation errors (issue detection)

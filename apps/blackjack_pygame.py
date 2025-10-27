@@ -7,6 +7,7 @@ from typing import Optional
 import pygame
 from apps import assets
 from src.utils import load_configs
+import traceback, datetime, os
 from src.make_env import make_env
 
 
@@ -58,6 +59,9 @@ class BlackjackViewer:
         self.autoplay = False
         self.model = None
         self.autoplay_delay_ms = 500
+        # Time to wait (ms) before auto-starting a new round after one ends
+        # Used when scheduling self.next_round_at
+        self.auto_next_ms = 800
         self.next_action_at = 0
         self.obs = None
         # Session scoreboard (wins, losses, draws)
@@ -700,7 +704,18 @@ def main():
         viewer.record_out = args.record_out
     if args.autoplay and args.rounds > 0:
         viewer.rounds_to_play = int(args.rounds)
-    viewer.run()
+    try:
+        viewer.run()
+    except Exception as e:
+        try:
+            os.makedirs('logs', exist_ok=True)
+            with open(os.path.join('logs', 'viewer_crash.log'), 'a', encoding='utf-8') as f:
+                f.write(f"\n[{datetime.datetime.now().isoformat()}] Viewer crashed: {e}\n")
+                traceback.print_exc(file=f)
+            print('Viewer crashed — details written to logs/viewer_crash.log')
+        except Exception:
+            pass
+        raise
 
 
 if __name__ == '__main__':

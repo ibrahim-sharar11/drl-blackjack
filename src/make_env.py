@@ -1,12 +1,17 @@
-from envs.minigrid_env import MiniGridWrapper
+"""
+Environment factory with lazy imports so missing optional envs
+don’t break unrelated apps. Only import the specific env when used.
+"""
+
 from envs.formflow_env import FormFlowEnv
-from envs.tetris_env import TetrisEnv
 from envs.blackjack_env import BlackjackEnv
 
 def make_env(app_cfg, persona_cfg):
     weights = persona_cfg["weights"]
     app_id = app_cfg["id"]
     if app_id == "minigrid":
+        # Lazy import to avoid hard dependency when not using MiniGrid
+        from envs.minigrid_env import MiniGridWrapper
         return MiniGridWrapper(
             env_id=app_cfg.get("env_id", "MiniGrid-Empty-8x8-v0"),
             max_steps=app_cfg.get("max_steps", 200),
@@ -26,6 +31,8 @@ def make_env(app_cfg, persona_cfg):
             latency_spike_prob=app_cfg.get("latency_spike_prob", 0.05),
         )
     elif app_id == "tetris":
+        # Lazy import to avoid hard dependency when not using Tetris
+        from envs.tetris_env import TetrisEnv
         return TetrisEnv(
             max_steps=app_cfg.get("max_steps", 2000),
             seed=app_cfg.get("seed", 7),

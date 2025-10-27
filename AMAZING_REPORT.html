@@ -1,18 +1,5 @@
 <!doctype html><meta charset="utf-8"><title>DRL for Automated Testing — Report</title>
 <style>body{font-family:Segoe UI,Arial,sans-serif;margin:24px;color:#222} h1,h2{margin:0.4em 0} .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px} .card{border:1px solid #ddd;border-radius:8px;padding:12px} img{max-width:100%;height:auto;border:1px solid #eee;border-radius:6px} code{background:#f5f5f5;padding:2px 4px;border-radius:4px}</style>
-<script>
-  // Prefer viewer GIFs (actual game UI) when available; fallback to eval GIFs.
-  document.addEventListener('DOMContentLoaded', function () {
-    var imgs = document.querySelectorAll('img[src$="/eval/episode_1.gif"], img[src*="/eval/episode_1.gif"]');
-    imgs.forEach(function (img) {
-      var original = img.getAttribute('src');
-      var viewer = original.replace('/episode_1.gif', '/viewer_episode_1.gif');
-      img.setAttribute('data-fallback', original);
-      img.onerror = function () { this.onerror = null; this.src = this.getAttribute('data-fallback'); };
-      img.src = viewer;
-    });
-  });
-  </script>
 <h1>DRL for Automated Testing — Results</h1>
 <p>This report is auto-generated from artifacts under <code>runs/</code>. It includes per-run aggregates, plots, and preview frames/GIFs when available.</p>
 <h2>Blackjack</h2>
@@ -72,6 +59,32 @@
 <li><b>draw_mean</b>: 0.05177254055501176</li>
 </ul>
 <div><img src="runs/blackjack-a2c-survivor-seed7-1761170718/eval/episode_1.gif" alt="preview"></div>
+</div>
+<div class="card">
+<h3 style="margin-top:0">blackjack-a2c-survivor-seed7-1761502993</h3>
+<div><img src="runs/blackjack-a2c-survivor-seed7-1761502993/return_curve.png" alt="return curve"></div>
+<ul>
+<li><b>episodes</b>: 199971</li>
+<li><b>return_mean</b>: 0.8228221208552235</li>
+<li><b>return_std</b>: 2.6135204952995728</li>
+<li><b>length_mean</b>: 1.0001450210280491</li>
+<li><b>win_mean</b>: 0.38199205551471627</li>
+<li><b>lose_mean</b>: 0.5661895974916363</li>
+<li><b>draw_mean</b>: 0.051765839380043435</li>
+</ul>
+</div>
+<div class="card">
+<h3 style="margin-top:0">blackjack-a2c-survivor-seed7-1761503840</h3>
+<div><img src="runs/blackjack-a2c-survivor-seed7-1761503840/return_curve.png" alt="return curve"></div>
+<ul>
+<li><b>episodes</b>: 199971</li>
+<li><b>return_mean</b>: 0.8228221208552235</li>
+<li><b>return_std</b>: 2.6135204952995728</li>
+<li><b>length_mean</b>: 1.0001450210280491</li>
+<li><b>win_mean</b>: 0.38199205551471627</li>
+<li><b>lose_mean</b>: 0.5661895974916363</li>
+<li><b>draw_mean</b>: 0.051765839380043435</li>
+</ul>
 </div>
 <div class="card">
 <h3 style="margin-top:0">blackjack-ppo-explorer-seed7-1761160326</h3>
@@ -253,6 +266,33 @@
 </ul>
 <div><img src="runs/blackjack-ppo-survivor-seed7-1761181439/eval/episode_1.gif" alt="preview"></div>
 </div>
+<div class="card">
+<h3 style="margin-top:0">blackjack-ppo-survivor-seed7-1761502791</h3>
+<div><img src="runs/blackjack-ppo-survivor-seed7-1761502791/return_curve.png" alt="return curve"></div>
+<ul>
+<li><b>episodes</b>: 139678</li>
+<li><b>return_mean</b>: 0.8491319826477701</li>
+<li><b>return_std</b>: 2.6081440989219162</li>
+<li><b>length_mean</b>: 1.4369048812268217</li>
+<li><b>win_mean</b>: 0.32353199872789573</li>
+<li><b>lose_mean</b>: 0.4785300240848896</li>
+<li><b>draw_mean</b>: 0.04566038344791979</li>
+</ul>
+</div>
+<div class="card">
+<h3 style="margin-top:0">blackjack-ppo-survivor-seed7-1761503633</h3>
+<div><img src="runs/blackjack-ppo-survivor-seed7-1761503633/return_curve.png" alt="return curve"></div>
+<ul>
+<li><b>episodes</b>: 139678</li>
+<li><b>return_mean</b>: 0.8491319826477701</li>
+<li><b>return_std</b>: 2.6081440989219162</li>
+<li><b>length_mean</b>: 1.4369048812268217</li>
+<li><b>win_mean</b>: 0.32353199872789573</li>
+<li><b>lose_mean</b>: 0.4785300240848896</li>
+<li><b>draw_mean</b>: 0.04566038344791979</li>
+</ul>
+<div><img src="runs/blackjack-ppo-survivor-seed7-1761503633/eval/episode_1.gif" alt="preview"></div>
+</div>
 </div>
 <h2>Formflow</h2>
 <div class="grid">
@@ -297,6 +337,33 @@
 <li><b>validation_errors_mean</b>: 0.21644893957776848</li>
 </ul>
 <div><img src="runs/formflow-a2c-survivor-seed7-1761170399/eval/episode_1.gif" alt="preview"></div>
+</div>
+<div class="card">
+<h3 style="margin-top:0">formflow-a2c-survivor-seed7-1761503434</h3>
+<div><img src="runs/formflow-a2c-survivor-seed7-1761503434/return_curve.png" alt="return curve"></div>
+<ul>
+<li><b>episodes</b>: 15745</li>
+<li><b>return_mean</b>: 0.998538820544492</li>
+<li><b>return_std</b>: 0.6803370486806521</li>
+<li><b>length_mean</b>: 12.70231819625278</li>
+<li><b>distinct_pages_mean</b>: 3.002344872920923</li>
+<li><b>distinct_selectors_mean</b>: 0.021978971373969276</li>
+<li><b>validation_errors_mean</b>: 0.3851738757073436</li>
+</ul>
+</div>
+<div class="card">
+<h3 style="margin-top:0">formflow-a2c-survivor-seed7-1761504286</h3>
+<div><img src="runs/formflow-a2c-survivor-seed7-1761504286/return_curve.png" alt="return curve"></div>
+<ul>
+<li><b>episodes</b>: 15745</li>
+<li><b>return_mean</b>: 0.998538820544492</li>
+<li><b>return_std</b>: 0.6803370486806521</li>
+<li><b>length_mean</b>: 12.70231819625278</li>
+<li><b>distinct_pages_mean</b>: 3.002344872920923</li>
+<li><b>distinct_selectors_mean</b>: 0.021978971373969276</li>
+<li><b>validation_errors_mean</b>: 0.3851738757073436</li>
+</ul>
+<div><img src="runs/formflow-a2c-survivor-seed7-1761504286/eval/episode_1.gif" alt="preview"></div>
 </div>
 <div class="card">
 <h3 style="margin-top:0">formflow-ppo-explorer-seed7-1761161000</h3>
@@ -353,5 +420,31 @@
 <li><b>validation_errors_mean</b>: 0.3242749433808377</li>
 </ul>
 <div><img src="runs/formflow-ppo-survivor-seed7-1761169999/eval/episode_1.gif" alt="preview"></div>
+</div>
+<div class="card">
+<h3 style="margin-top:0">formflow-ppo-survivor-seed7-1761503298</h3>
+<div><img src="runs/formflow-ppo-survivor-seed7-1761503298/return_curve.png" alt="return curve"></div>
+<ul>
+<li><b>episodes</b>: 19410</li>
+<li><b>return_mean</b>: 1.1350896170176492</li>
+<li><b>return_std</b>: 0.08754798465172123</li>
+<li><b>length_mean</b>: 10.340082431736219</li>
+<li><b>distinct_pages_mean</b>: 3.058336649257037</li>
+<li><b>distinct_selectors_mean</b>: 0.8737222127231906</li>
+<li><b>validation_errors_mean</b>: 0.34465447529462107</li>
+</ul>
+</div>
+<div class="card">
+<h3 style="margin-top:0">formflow-ppo-survivor-seed7-1761504146</h3>
+<div><img src="runs/formflow-ppo-survivor-seed7-1761504146/return_curve.png" alt="return curve"></div>
+<ul>
+<li><b>episodes</b>: 19410</li>
+<li><b>return_mean</b>: 1.1350896170176492</li>
+<li><b>return_std</b>: 0.08754798465172123</li>
+<li><b>length_mean</b>: 10.340082431736219</li>
+<li><b>distinct_pages_mean</b>: 3.058336649257037</li>
+<li><b>distinct_selectors_mean</b>: 0.8737222127231906</li>
+<li><b>validation_errors_mean</b>: 0.34465447529462107</li>
+</ul>
 </div>
 </div>

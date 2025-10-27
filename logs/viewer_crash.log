@@ -1,0 +1,11 @@
+
+[2025-10-27T00:00:32.844918] Viewer crashed: cannot access local variable 'round_over' where it is not associated with a value
+Traceback (most recent call last):
+  File "C:\Users\alish\Downloads\assignment_bundle\apps\blackjack_pygame.py", line 708, in main
+    viewer.run()
+  File "C:\Users\alish\Downloads\assignment_bundle\apps\blackjack_pygame.py", line 547, in run
+    self.animate_deal('dealer', self.env.dealer[j], face_up=True)
+  File "C:\Users\alish\Downloads\assignment_bundle\apps\blackjack_pygame.py", line 259, in animate_deal
+    if self.autoplay and round_over and not self.pending_reveal and getattr(self, 'next_round_at', 0):
+                         ^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'round_over' where it is not associated with a value
