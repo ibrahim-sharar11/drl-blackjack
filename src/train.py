@@ -11,7 +11,8 @@ ALGOS = {"ppo": PPO, "a2c": A2C}
 def parse():
     p = argparse.ArgumentParser()
     p.add_argument("--algo", default="ppo", choices=["ppo","a2c"])
-    p.add_argument("--app", default="minigrid", choices=["minigrid","formflow","tetris","blackjack"])
+    # Limit submission scope to supported apps; default to blackjack
+    p.add_argument("--app", default="blackjack", choices=["formflow","blackjack"])
     p.add_argument("--persona", default="survivor", choices=["survivor","explorer","speedrunner"])
     p.add_argument("--seed", type=int, default=7)
     p.add_argument("--out", default="runs")
